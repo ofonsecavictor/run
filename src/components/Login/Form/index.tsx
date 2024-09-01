@@ -37,7 +37,7 @@ export function InputFields({ isDarkMode, contentBackgroundStyle }: InputFieldsP
               value={values.email}
             />
             {touched.email && errors.email && (
-              <Text style={{ color: 'red', marginBottom: 10 }}>{errors.email}</Text>
+              <Text style={{ color: 'red', marginBottom: 10, marginTop: -15 }}>{errors.email}</Text>
             )}
             <Input
               placeholder="senha"
@@ -48,7 +48,7 @@ export function InputFields({ isDarkMode, contentBackgroundStyle }: InputFieldsP
               value={values.password}
             />
             {touched.password && errors.password && (
-              <Text style={{ color: 'red', marginBottom: 10 }}>{errors.password}</Text>
+              <Text style={{ color: 'red', marginBottom: 10, marginTop: -15 }}>{errors.password}</Text>
             )}
           </InputContainer>
           <ActionButtons navigation={navigation} handleSubmit={handleSubmit} />
