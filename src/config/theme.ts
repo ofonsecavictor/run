@@ -6,7 +6,8 @@ export const lightTheme = {
     headerBackgroundColor: 'red',
     textColor: '#000',
     placeholderColor: '#888',
-    navigationTheme: DefaultTheme, // Adiciona o tema de navegação
+    borderColor: '#000',
+    navigationTheme: DefaultTheme,
   };
 
   export const darkTheme = {
@@ -14,5 +15,6 @@ export const lightTheme = {
     headerBackgroundColor: '#cd0101',
     textColor: '#FFF',
     placeholderColor: '#AAA',
-    navigationTheme: DefaultTheme, // Adiciona o tema de navegação
+    borderColor: '#ffff',
+    navigationTheme: DefaultTheme,
   };

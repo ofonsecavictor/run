@@ -55,7 +55,7 @@ describe('InputFields', () => {
     fireEvent.press(submitButton);
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('Home');
+      expect(mockNavigate).toHaveBeenCalledWith('MainTab');
     });
   });
 });

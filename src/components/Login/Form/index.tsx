@@ -22,7 +22,7 @@ export function InputFields({ isDarkMode, contentBackgroundStyle }: InputFieldsP
       validationSchema={validationLoginSchema}
       onSubmit={(values) => {
         console.log(values);
-        navigation.navigate('Home');
+        navigation.navigate('MainTab');
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
@@ -51,7 +51,7 @@ export function InputFields({ isDarkMode, contentBackgroundStyle }: InputFieldsP
               <Text style={{ color: 'red', marginBottom: 10, marginTop: -15 }}>{errors.password}</Text>
             )}
           </InputContainer>
-          <ActionButtons navigation={navigation} handleSubmit={handleSubmit} />
+          <ActionButtons navigation={navigation} handleSubmit={() => navigation.navigate('MainTab')} />
         </ContentContainer>
       )}
     </Formik>

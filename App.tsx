@@ -4,7 +4,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import { Routes } from './src/routes';
-import { ThemeProvider } from './src/context/useTheme';
+import { ThemeProvider } from './src/context/themeContext/useTheme';
 
 
 function App(): React.JSX.Element {

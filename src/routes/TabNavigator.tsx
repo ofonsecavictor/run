@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -29,6 +28,7 @@ export const MainTab: React.FC = () => {
                             name="home-outline"
                             size={size}
                             color={color}
+                            testID="home-icon"
                         />
                     ),
                 }}
@@ -43,6 +43,7 @@ export const MainTab: React.FC = () => {
                             name="people-outline"
                             size={size}
                             color={color}
+                            testID="athletes-icon"
                         />
                     ),
                 }}
@@ -57,6 +58,7 @@ export const MainTab: React.FC = () => {
                             name="pie-chart-outline"
                             size={size}
                             color={color}
+                            testID="dashboard-icon"
                         />
                     ),
                 }}
@@ -71,6 +73,7 @@ export const MainTab: React.FC = () => {
                             name="settings-outline"
                             size={size}
                             color={color}
+                            testID="config-icon"
                         />
                     ),
                 }}
