@@ -5,15 +5,16 @@ import * as S from './styled';
 import { contentButton, feedBackList, user } from '../../mocks/mocks';
 import { FeedbackCard } from '../../components/Home/CardFeedkback';
 import { useTheme } from '../../context/themeContext/useTheme';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { getColorByPercentage, getIconNameByPercentage } from '../../utils/Home/functions';
 
 export function HomeScreen(): React.JSX.Element {
     const { theme, isDark } = useTheme();
     const ButtonFallback: ViewStyle = {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
+        paddingHorizontal: 15,
+        justifyContent: 'space-around',
         backgroundColor: theme.backgroundColor,
-        padding: 10,
         borderRadius: 5,
         shadowColor: !isDark ? '#000' : '#fff',
         shadowOffset: { width: 0, height: 2 },
@@ -21,6 +22,8 @@ export function HomeScreen(): React.JSX.Element {
         shadowRadius: 4,
         elevation: 5,
     };
+
+
     return (
         <Global.MainScreenContainer>
             <Global.Header />
@@ -32,6 +35,7 @@ export function HomeScreen(): React.JSX.Element {
                             overflow={!!button.image}
                             key={button.id}
                             width={index === 2 ? '100%' : '48%'}
+                            height={index === 2 ? '130px' : '160px'}
                             onPress={button.action}
                         >
                             {button.image ? (
@@ -39,11 +43,31 @@ export function HomeScreen(): React.JSX.Element {
                                     source={{ uri: button.image }}
                                     style={S.ButtonImage}
                                 >
-                                    <S.ButtonText color="white">{button.title}</S.ButtonText>
+                                    <S.ButtonText color="white" width="60%">{button.title}</S.ButtonText>
                                 </ImageBackground>
                             ) : (
                                 <View style={ButtonFallback}>
-                                    <S.ButtonText color={theme.textColor}>{button.title}</S.ButtonText>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                        <S.ButtonText color={theme.textColor} size="32px">{button.content}</S.ButtonText>
+                                        <S.ButtonText color={theme.textColor} self="center">{button.title}</S.ButtonText>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
+                                        <S.ButtonText
+                                            color={getColorByPercentage(button.contentPecentage as string)}
+                                            width="30%"
+                                            self="flex-end"
+                                        >
+                                            {button.contentPecentage}
+                                        </S.ButtonText>
+                                        {getIconNameByPercentage(button.contentPecentage as string) && (
+                                            <Icon
+                                                name={getIconNameByPercentage(button.contentPecentage as string) as string}
+                                                size={14}
+                                                color={getColorByPercentage(button.contentPecentage as string)}
+                                                testID="home-icon"
+                                            />
+                                        )}
+                                    </View>
                                 </View>
                             )}
                         </S.Button>

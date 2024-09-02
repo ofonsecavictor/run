@@ -10,6 +10,8 @@ interface Theme {
   placeholderColor: string;
   navigationTheme: NavigationTheme;
   borderColor: string;
+  positiveColor: string;
+  negativeColor: string;
 }
 
 interface ThemeContextProps {

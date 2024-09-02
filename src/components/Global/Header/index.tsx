@@ -3,20 +3,29 @@ import { useTheme } from '../../../context/themeContext/useTheme';
 import logo from '../../../assets/logo-header.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as S from './styled';
+import { useModal } from '../../../context/modalContext';
 
 export function Header() {
     const { theme } = useTheme();
-    const hasNotification = true;
+  const {toggleModal, setKeyModal} = useModal();
 
-    const handleNotificationPress = () => {
-        console.log('CLICOU NO ALERTA');
-    };
+  const handleOpenModal = (key: string) => {
+    toggleModal({
+      [key]: {
+        isOpen: true,
+      },
+    });
+    console.log('key');
+    setKeyModal('notifications');
+  };
+
+    const hasNotification = true;
 
     return (
         <S.HeaderContainer theme={theme}>
             <S.HeaderContent>
                 <S.LogoImage source={logo} />
-                <S.NotificationButton onPress={handleNotificationPress}>
+                <S.NotificationButton onPress={() => handleOpenModal('generic')}>
                     {hasNotification ? (
                         <S.AnimatedIconView>
                             <S.NotificationIndicator />
