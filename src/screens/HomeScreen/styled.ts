@@ -1,5 +1,16 @@
 import styled from 'styled-components/native';
 import { useTheme } from '../../context/themeContext/useTheme';
+import { FlatList, ImageStyle, TouchableOpacity } from 'react-native';
+import { Feedback } from '../../mocks/mocks';
+
+interface ButtonProps {
+  width: string;
+  overflow: boolean;
+}
+
+interface TextProps {
+  color: string;
+}
 
 export const GreetingText = styled.Text`
   color: ${() => {
@@ -18,31 +29,51 @@ export const ButtonsContainer = styled.View`
   gap: 10px;
 `;
 
-export const CustomButton = styled.TouchableOpacity`
-  width: 48%;
+export const Button = styled(TouchableOpacity)<ButtonProps>`
+  width: ${({ width }) => width};
   height: 160px;
   border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-
-  background-color: ${() => {
-    const { theme } = useTheme();
-    return theme.backgroundColor;
-  }};
-    shadow-color: ${() => {
-    const { isDark } = useTheme();
-    return isDark ? '#ffff' : 'gray';
-  }};
-
-  shadow-offset: 0px 1px;
-  shadow-opacity: 0.2;
-  shadow-radius: 3.84px;
-  elevation: 5;
+  margin-bottom: 10px;
+  overflow: ${({ overflow }) => (overflow ? 'hidden' : 'visible')};
 `;
 
-export const ButtonText = styled.Text`
+export const ButtonText = styled.Text<TextProps>`
+  color: ${({ color }) => color};
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  align-self: flex-start;
+  width: 60%;
+  padding-left: 10px;
+`;
+
+export const ButtonImage: ImageStyle = {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  padding: 10,
+};
+
+export const FeedbackList = styled(FlatList<Feedback>)`
+  margin-top: 20px;
+  padding-horizontal: 20px;
+`;
+
+export const ListHeader = styled.View`
+  margin-bottom: 15px;
+`;
+
+export const FeedbackTitle = styled.Text`
   color: ${() => {
     const { theme } = useTheme();
     return theme.textColor;
   }};
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export const Separator = styled.View`
+  border-width: 0.4px;
+  border-color: gray;
 `;
