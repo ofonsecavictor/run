@@ -3,7 +3,7 @@ import {
   StatusBar,
   useColorScheme,
 } from 'react-native';
-import { Routes } from './src/routes';
+import { Routes } from './src/routes/routes';
 import { ThemeProvider } from './src/context/themeContext/useTheme';
 
 

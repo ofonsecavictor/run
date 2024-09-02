@@ -3,7 +3,7 @@ import { Text, ViewStyle } from 'react-native';
 import { Input, InputContainer, ContentContainer } from '../../styled';
 import { ActionButtons } from '../ActionsButtons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../../../routes';
+import { RootStackParamList } from '../../../routes/routes';
 import { Formik } from 'formik';
 import { validationLoginSchema } from '../../../utils/validations';
 

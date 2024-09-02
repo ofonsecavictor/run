@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { Routes } from '../routes';
+import { Routes } from './routes';
 
 jest.mock('../screens/LoginScreen', () => {
   const { Text } = require('react-native');

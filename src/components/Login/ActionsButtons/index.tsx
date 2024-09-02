@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../../routes';
+import { RootStackParamList } from '../../../routes/routes';
 import { Button, ButtonText, InputContainer } from '../../styled';
 
 interface ActionButtonsProps {
