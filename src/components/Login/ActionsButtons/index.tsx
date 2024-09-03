@@ -14,12 +14,6 @@ export function ActionButtons({ handleSubmit }: ActionButtonsProps) {
       <Button backgroundColor="red" onPress={handleSubmit}>
         <ButtonText>Entrar</ButtonText>
       </Button>
-      <Button backgroundColor="blue">
-        <ButtonText>Entrar com Google</ButtonText>
-      </Button>
-      <Button backgroundColor="black">
-        <ButtonText>Entrar com Apple</ButtonText>
-      </Button>
     </InputContainer>
   );
 }

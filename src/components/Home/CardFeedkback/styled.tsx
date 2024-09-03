@@ -8,14 +8,6 @@ export const FeedbackItem = styled.TouchableOpacity`
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 15px;
-  shadow-color: ${() => {
-    const { isDark } = useTheme();
-    return isDark ? '#fff' : 'gray';
-  }};
-  shadow-offset: 0px 1px;
-  shadow-opacity: 0.3;
-  shadow-radius: 5px;
-  elevation: 5;
 `;
 
 export const FeedbackName = styled.Text`

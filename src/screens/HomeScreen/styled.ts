@@ -11,7 +11,7 @@ interface ButtonProps {
 
 interface TextProps {
   color: string;
-  size?: string;
+  size?: string | number;
   self?: string;
   width?: string;
 }
@@ -21,7 +21,7 @@ export const GreetingText = styled.Text`
     const {theme} = useTheme();
     return theme.textColor;
   }};
-  font-size: 18px;
+  /* font-size: 18px; */
   font-weight: 600;
 `;
 
@@ -36,7 +36,6 @@ export const ButtonsContainer = styled.View`
 export const Button = styled(TouchableOpacity)<ButtonProps>`
   width: ${({width}) => width};
   height: ${({height}) => height};
-
   border-radius: 10px;
   margin-bottom: 10px;
   overflow: ${({overflow}) => (overflow ? 'hidden' : 'visible')};
@@ -44,7 +43,7 @@ export const Button = styled(TouchableOpacity)<ButtonProps>`
 
 export const ButtonText = styled.Text<TextProps>`
   color: ${({color}) => color};
-  font-size: ${({size}) => size};
+  /* font-size: ${({size}) => size}; */
   font-weight: bold;
   text-align: left;
   align-self: ${({self}) => self};
@@ -72,7 +71,7 @@ export const FeedbackTitle = styled.Text`
     const {theme} = useTheme();
     return theme.textColor;
   }};
-  font-size: 16px;
+  /* font-size: 16px; */
   font-weight: bold;
   margin-bottom: 10px;
 `;

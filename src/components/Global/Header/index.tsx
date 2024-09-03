@@ -1,23 +1,27 @@
 import React from 'react';
 import { useTheme } from '../../../context/themeContext/useTheme';
 import logo from '../../../assets/logo-header.png';
-import Icon from 'react-native-vector-icons/Ionicons';
 import * as S from './styled';
 import { useModal } from '../../../context/modalContext';
+import { NotificationIcon } from '../../../assets/icons/notifications';
+import { NotificationIconOutlined } from '../../../assets/icons/notifications-outline';
+
+
+
 
 export function Header() {
     const { theme } = useTheme();
-  const {toggleModal, setKeyModal} = useModal();
+    const { toggleModal, setKeyModal } = useModal();
 
-  const handleOpenModal = (key: string) => {
-    toggleModal({
-      [key]: {
-        isOpen: true,
-      },
-    });
-    console.log('key');
-    setKeyModal('notifications');
-  };
+    const handleOpenModal = (key: string) => {
+        toggleModal({
+            [key]: {
+                isOpen: true,
+            },
+        });
+        console.log('key');
+        setKeyModal('notifications');
+    };
 
     const hasNotification = true;
 
@@ -29,17 +33,17 @@ export function Header() {
                     {hasNotification ? (
                         <S.AnimatedIconView>
                             <S.NotificationIndicator />
-                            <Icon
-                                name="notifications"
-                                size={24}
-                                color="white"
+                            <NotificationIcon
+                                fill="white"
+                                width={22}
+                                height={22}
                             />
                         </S.AnimatedIconView>
                     ) : (
-                        <Icon
-                            name="notifications-outline"
-                            size={24}
-                            color="white"
+                        <NotificationIconOutlined
+                            stroke="white"
+                            width={24}
+                            height={24}
                         />
                     )}
                 </S.NotificationButton>

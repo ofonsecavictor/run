@@ -1,8 +1,12 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { useColorScheme } from 'react-native';
 import * as Screen from '../screens';
+import { HomeIcon } from '../assets/icons/home';
+import { ChartIcon } from '../assets/icons/chart';
+import { PeopleIcon } from '../assets/icons/group';
+import { SettingsIcon } from '../assets/icons/config';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,11 +28,10 @@ export const MainTab: React.FC = () => {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ size, color }) => (
-                        <Icon
-                            name="home-outline"
-                            size={size}
-                            color={color}
-                            testID="home-icon"
+                        <HomeIcon
+                            width={size}
+                            height={size}
+                            fill={color}
                         />
                     ),
                 }}
@@ -39,11 +42,11 @@ export const MainTab: React.FC = () => {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ size, color }) => (
-                        <Icon
-                            name="people-outline"
-                            size={size}
-                            color={color}
-                            testID="athletes-icon"
+                        <PeopleIcon
+                            width={size}
+                            height={size}
+                            fill={color}
+
                         />
                     ),
                 }}
@@ -54,11 +57,11 @@ export const MainTab: React.FC = () => {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ size, color }) => (
-                        <Icon
-                            name="pie-chart-outline"
-                            size={size}
-                            color={color}
-                            testID="dashboard-icon"
+                        <ChartIcon
+                            width={size}
+                            height={size}
+                            fill={color}
+
                         />
                     ),
                 }}
@@ -69,11 +72,10 @@ export const MainTab: React.FC = () => {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ size, color }) => (
-                        <Icon
-                            name="settings-outline"
-                            size={size}
-                            color={color}
-                            testID="config-icon"
+                        <SettingsIcon
+                            width={size}
+                            height={size}
+                            fill={color}
                         />
                     ),
                 }}

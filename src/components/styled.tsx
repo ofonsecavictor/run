@@ -45,6 +45,7 @@ export const Button = styled.TouchableOpacity<{ backgroundColor: string }>`
   padding: 20px;
   background-color: ${(props) => props.backgroundColor};
   width: 80%;
+  margin-top: 20px;
 `;
 
 export const ButtonText = styled.Text`
