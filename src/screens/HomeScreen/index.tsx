@@ -48,7 +48,7 @@ export function HomeScreen(): React.JSX.Element {
                                 ) : (
                                     <View style={ButtonFallback}>
                                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                            <S.ButtonText color={theme.textColor}>{button.content}</S.ButtonText>
+                                            <S.ButtonText color={theme.textColor} style={{fontSize:32}}>{button.content}</S.ButtonText>
                                             <S.ButtonText color={theme.textColor} self="center">{button.title}</S.ButtonText>
                                         </View>
                                         <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>

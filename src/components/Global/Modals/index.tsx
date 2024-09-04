@@ -2,11 +2,12 @@ import React from 'react';
 import { Modal as RNModal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useModal } from '../../../context/modalContext';
 import { NotificationsContent } from './Content';
+import { ViewPointsDetails } from './Content/Notifications/details';
 
 
 
 export const GenericModal: React.FC = () => {
-    const { toggleModal, keyModal, setModalContent } = useModal();
+    const { toggleModal, keyModal, setModalContent, modal } = useModal();
 
     const handleCloseModal = () => {
         toggleModal({ generic: { isOpen: false } });
@@ -31,6 +32,9 @@ export const GenericModal: React.FC = () => {
                     {modalContent}
                 </View>
             </View>
+            {modal?.notificationsDetails?.isOpen &&
+                <ViewPointsDetails />
+            }
         </RNModal>
     );
 };
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContent: {
-        flex:1,
+        flex: 1,
         width: '100%',
         borderRadius: 10,
         padding: 20,
@@ -59,6 +63,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     content: {
-        flex:1,
+        flex: 1,
     },
 });

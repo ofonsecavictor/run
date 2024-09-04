@@ -76,3 +76,46 @@ export const Content = styled.View`
 flex-direction: column;
 width: 90%;
 `;
+
+export const ModalContainerDetails = styled.Modal`
+  flex: 1;
+  justify-content: flex-end;
+`;
+
+export const ModalBackground = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+export const ModalContent = styled.View`
+  height: 30%;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 15px;
+`;
+
+export const Header = styled.View`
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const CloseButton = styled.TouchableOpacity``;
+
+export const ContentSection = styled.View`
+  gap: 20px;
+`;
+
+export const TextRow = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const TitleText = styled.Text`
+  color: #afafaf;
+`;
+
+export const MessageText = styled.Text`
+  color: #303030;
+`;
