@@ -3,6 +3,8 @@ import { Modal as RNModal, View, Text, TouchableOpacity, StyleSheet } from 'reac
 import { useModal } from '../../../context/modalContext';
 import { NotificationsContent } from './Content';
 import { ViewPointsDetails } from './Content/Notifications/details';
+import { AthleteDetails } from './Content/AthleteDetails';
+
 
 
 
@@ -15,6 +17,7 @@ export const GenericModal: React.FC = () => {
     };
     const modalContent = {
         notifications: <NotificationsContent />,
+        atlheteDetails: <AthleteDetails />,
     }[keyModal];
 
     return (
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         borderRadius: 10,
-        padding: 20,
+        padding: 15,
     },
     closeButton: {
         position: 'absolute',
