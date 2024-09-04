@@ -21,7 +21,7 @@ export const GreetingText = styled.Text`
     const {theme} = useTheme();
     return theme.textColor;
   }};
-  /* font-size: 18px; */
+  font-size: 18px;
   font-weight: 600;
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme } from '../../../context/themeContext/useTheme';
+
 
 export const FeedbackItem = styled.TouchableOpacity`
   flex-direction: row;
@@ -38,10 +38,9 @@ export const FeedbackTextContainer = styled.View`
   gap: 5px;
 `;
 
-export const FeedbackIcon = styled(Icon) <{ isDark: boolean }>`
+export const FeedbackIcon = styled.View`
   position: absolute;
-  right: 5px;
+  right: 0px;
   top: 40px;
-  color: ${({ isDark }) => (isDark ? 'white' : 'black')};
   font-size: 18px;
 `;

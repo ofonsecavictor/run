@@ -6,8 +6,7 @@ import * as S from './styled';
 import { contentButton, feedBackList, user } from '../../mocks/mocks';
 import { FeedbackCard } from '../../components/Home/CardFeedkback';
 import { useTheme } from '../../context/themeContext/useTheme';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { getColorByPercentage, getIconNameByPercentage } from '../../utils/Home/functions';
+import { getColorByPercentage, getIconByPercentage } from '../../utils/Home/functions';
 
 export function HomeScreen(): React.JSX.Element {
     const { theme, isDark } = useTheme();
@@ -24,62 +23,57 @@ export function HomeScreen(): React.JSX.Element {
         elevation: 5,
     };
 
-
     return (
         <Global.MainScreenContainer>
             <Global.Header />
             <Global.ContentContainer>
                 <S.GreetingText>Olá, {user.firstName} 🏃‍♂️</S.GreetingText>
                 <S.ButtonsContainer>
-                    {contentButton.map((button, index) => (
-                        <S.Button
-                            overflow={!!button.image}
-                            key={button.id}
-                            width={index === 2 ? '100%' : '48%'}
-                            height={index === 2 ? '130px' : '160px'}
-                            onPress={button.action}
-                        >
-                            {button.image ? (
-                                <ImageBackground
-                                    source={{ uri: button.image }}
-                                    style={S.ButtonImage}
-                                >
-                                    <S.ButtonText color="white" width="60%">{button.title}</S.ButtonText>
-                                </ImageBackground>
-                            ) : (
-                                <View style={ButtonFallback}>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                        <S.ButtonText color={theme.textColor} style={{fontSize:32}}>{button.content}</S.ButtonText>
-                                        <S.ButtonText color={theme.textColor} self="center">{button.title}</S.ButtonText>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
-                                        <S.ButtonText
-                                            color={getColorByPercentage(button.contentPecentage as string)}
-                                            width="30%"
-                                            self="flex-end"
-                                        >
-                                            {button.contentPecentage}
-                                        </S.ButtonText>
-                                        {getIconNameByPercentage(button.contentPecentage as string) && (
-                                            <Icon
-                                                name={getIconNameByPercentage(button.contentPecentage as string) as string}
-                                                size={14}
+                    {contentButton.map((button, index) => {
+                        return (
+                            <S.Button
+                                overflow={!!button.image}
+                                key={button.id}
+                                width={index === 2 ? '100%' : '48%'}
+                                height={index === 2 ? '130px' : '160px'}
+                                onPress={button.action}
+                            >
+                                {button.image ? (
+                                    <ImageBackground
+                                        source={{ uri: button.image }}
+                                        style={S.ButtonImage}
+                                    >
+                                        <S.ButtonText color="white" width="60%">{button.title}</S.ButtonText>
+                                    </ImageBackground>
+                                ) : (
+                                    <View style={ButtonFallback}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                            <S.ButtonText color={theme.textColor}>{button.content}</S.ButtonText>
+                                            <S.ButtonText color={theme.textColor} self="center">{button.title}</S.ButtonText>
+                                        </View>
+                                        <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
+                                            <S.ButtonText
                                                 color={getColorByPercentage(button.contentPecentage as string)}
-                                                testID="home-icon"
-                                            />
-                                        )}
+                                                width="30%"
+                                                self="flex-end"
+                                            >
+                                                {button.contentPecentage}
+                                            </S.ButtonText>
+                                            {getIconByPercentage(button.contentPecentage as string)}
+                                        </View>
                                     </View>
-                                </View>
-                            )}
-                        </S.Button>
-                    ))}
+                                )}
+                            </S.Button>
+                        );
+                    }
+                    )}
                 </S.ButtonsContainer>
                 <S.FeedbackList
                     ItemSeparatorComponent={S.Separator}
                     data={feedBackList}
                     showsVerticalScrollIndicator={false}
                     ListHeaderComponent={<S.ListHeader><S.FeedbackTitle>Feedbacks</S.FeedbackTitle></S.ListHeader>}
-                    renderItem={({ item }) => <FeedbackCard item={item} isDark={isDark} />}
+                    renderItem={({ item }) => <FeedbackCard item={item} />}
                     keyExtractor={(item) => item.id.toString()}
                 />
             </Global.ContentContainer>
