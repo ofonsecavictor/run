@@ -4,8 +4,9 @@ import { useModal } from '../../../context/modalContext';
 import { NotificationsContent } from './Content';
 import { ViewPointsDetails } from './Content/Notifications/details';
 import { AthleteDetails } from './Content/AthleteDetails';
-
-
+import { AtheleteDetailsDetails } from './Content/AthleteDetails/details';
+import { StravaAuthModal } from './Content/Strava/AuthModalContent/stravaAuthModal';
+import { StravaActivitiesModal } from './Content/Strava/ActivitiesContent';
 
 
 export const GenericModal: React.FC = () => {
@@ -15,9 +16,13 @@ export const GenericModal: React.FC = () => {
         toggleModal({ generic: { isOpen: false } });
         setModalContent(null);
     };
+
     const modalContent = {
         notifications: <NotificationsContent />,
         atlheteDetails: <AthleteDetails />,
+        stravaAuth: <StravaAuthModal />,
+        straveActivities: <StravaActivitiesModal />,
+
     }[keyModal];
 
     return (
@@ -37,6 +42,9 @@ export const GenericModal: React.FC = () => {
             </View>
             {modal?.notificationsDetails?.isOpen &&
                 <ViewPointsDetails />
+            }
+            {modal?.athleteDetails?.isOpen &&
+                <AtheleteDetailsDetails />
             }
         </RNModal>
     );

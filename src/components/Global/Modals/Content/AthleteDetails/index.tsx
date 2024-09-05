@@ -2,31 +2,40 @@ import React from 'react';
 import { useModal } from '../../../../../context/modalContext';
 import * as S from './styled';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
-import { Medal, medals, runningWorkouts } from '../../../../../mocks/mocks';
+import { medals, runningWorkouts } from '../../../../../mocks/mocks';
 import { Text } from 'react-native';
 
-interface ModalContent {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    phone?: string;
-    image?: string;
-    medals?: Medal[];
-    [key: string]: any;
-}
+// interface ModalContent {
+//     firstName?: string;
+//     lastName?: string;
+//     email?: string;
+//     phone?: string;
+//     image?: string;
+//     medals?: Medal[];
+//     [key: string]: any;
+// }
 
 export function AthleteDetails() {
-    const { modalContent }: { modalContent: ModalContent } = useModal();
+    const { modalContent, toggleModal,  setModalContentDetails } = useModal();
     const noImage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png';
     const entries = modalContent && typeof modalContent === 'object'
         ? Object.entries(modalContent).filter(([key]) => key !== 'id' && key !== 'image')
         : [];
 
-    const firstName = entries.find(([key]) => key === 'firstName');
-    const lastName = entries.find(([key]) => key === 'lastName');
+    const firstName: any = entries.find(([key]) => key === 'firstName');
+    const lastName: any = entries.find(([key]) => key === 'lastName');
 
-    const email = entries.find(([key]) => key === 'email');
-    const phone = entries.find(([key]) => key === 'phone');
+    const email: any = entries.find(([key]) => key === 'email');
+    const phone: any = entries.find(([key]) => key === 'phone');
+
+    const handleOpenModal = (item: any) => {
+        toggleModal({
+            athleteDetails: {
+                isOpen: true,
+            },
+        });
+        setModalContentDetails(item);
+    };
 
     return (
         <S.Container>
@@ -66,7 +75,7 @@ export function AthleteDetails() {
             <S.Title>Treinos de Corrida</S.Title>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {runningWorkouts.map((workout, index) => (
-                    <S.WorkoutButton key={index} onPress={() => console.log(workout)}>
+                    <S.WorkoutButton key={index} onPress={() => handleOpenModal(workout)}>
                         <S.WorkoutCircle>
                             <S.WorkoutInitial>{workout.day.charAt(0)}</S.WorkoutInitial>
                         </S.WorkoutCircle>

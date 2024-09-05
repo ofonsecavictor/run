@@ -1,78 +1,53 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { ImageBackground, View, ViewStyle } from 'react-native';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import * as Global from '../../components/Global';
 import * as S from './styled';
 import { contentButton, feedBackList, user } from '../../mocks/mocks';
 import { FeedbackCard } from '../../components/Home/CardFeedkback';
-import { useTheme } from '../../context/themeContext/useTheme';
-import { getColorByPercentage, getIconByPercentage } from '../../utils/Home/functions';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useModal } from '../../context/modalContext';
+import { ContentButtons } from '../../components/Global/Modals/Content/Strava/ContentButtons/contentButtons';
 
 export function HomeScreen(): React.JSX.Element {
-    const { theme, isDark } = useTheme();
-    const ButtonFallback: ViewStyle = {
-        flex: 1,
-        paddingHorizontal: 15,
-        justifyContent: 'space-around',
-        backgroundColor: theme.backgroundColor,
-        borderRadius: 5,
-        shadowColor: !isDark ? '#000' : '#fff',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        elevation: 5,
+    const { setKeyModal, toggleModal } = useModal();
+
+    const handleOpenModal = (key: string, keyContent: string) => {
+        toggleModal({
+            [key]: {
+                isOpen: true,
+            },
+        });
+        setKeyModal(keyContent);
     };
+
+    const checkStravaConnection = async () => {
+        const token = await AsyncStorage.getItem('strava_access_token');
+        if (!token) {
+            handleOpenModal('generic', 'stravaAuth');
+        }
+    };
+
+    useEffect(() => {
+        checkStravaConnection();
+    }, []);
+
 
     return (
         <Global.MainScreenContainer>
             <Global.Header />
             <Global.ContentContainer>
                 <S.GreetingText>Olá, {user.firstName} 🏃‍♂️</S.GreetingText>
-                <S.ButtonsContainer>
-                    {contentButton.map((button, index) => {
-                        return (
-                            <S.Button
-                                overflow={!!button.image}
-                                key={button.id}
-                                width={index === 2 ? '100%' : '48%'}
-                                height={index === 2 ? '130px' : '160px'}
-                                onPress={button.action}
-                            >
-                                {button.image ? (
-                                    <ImageBackground
-                                        source={{ uri: button.image }}
-                                        style={S.ButtonImage}
-                                    >
-                                        <S.ButtonText color="white" width="60%">{button.title}</S.ButtonText>
-                                    </ImageBackground>
-                                ) : (
-                                    <View style={ButtonFallback}>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                            <S.ButtonText color={theme.textColor} style={{fontSize:32}}>{button.content}</S.ButtonText>
-                                            <S.ButtonText color={theme.textColor} self="center">{button.title}</S.ButtonText>
-                                        </View>
-                                        <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
-                                            <S.ButtonText
-                                                color={getColorByPercentage(button.contentPecentage as string)}
-                                                width="30%"
-                                                self="flex-end"
-                                            >
-                                                {button.contentPecentage}
-                                            </S.ButtonText>
-                                            {getIconByPercentage(button.contentPecentage as string)}
-                                        </View>
-                                    </View>
-                                )}
-                            </S.Button>
-                        );
-                    }
-                    )}
-                </S.ButtonsContainer>
+                <ContentButtons contentButton={contentButton} />
                 <S.FeedbackList
                     ItemSeparatorComponent={S.Separator}
                     data={feedBackList}
                     showsVerticalScrollIndicator={false}
-                    ListHeaderComponent={<S.ListHeader><S.FeedbackTitle>Feedbacks</S.FeedbackTitle></S.ListHeader>}
+                    ListHeaderComponent={
+                        <S.ListHeader>
+                            <S.FeedbackTitle>Feedbacks</S.FeedbackTitle>
+                        </S.ListHeader>
+                    }
                     renderItem={({ item }) => <FeedbackCard item={item} />}
                     keyExtractor={(item) => item.id.toString()}
                 />

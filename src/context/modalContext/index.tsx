@@ -22,6 +22,7 @@ type Context = {
   setModalContent: (item: any) => void
   keyModal: string,
   setKeyModal: (key: string) => void;
+  modalContentDetails: any, setModalContentDetails: (item: any) => void
 };
 
 const ModalContext = createContext({} as Context);
@@ -29,6 +30,7 @@ const ModalContext = createContext({} as Context);
 export const ModalProvider = ({ children }: any) => {
   const [data, setData] = useState<IModalsData>({} as IModalsData);
   const [modalContent, setModalContent] = useState();
+  const [modalContentDetails, setModalContentDetails] = useState();
   const [keyModal, setKeyModal] = useState('');
 
   const toggleModal = useCallback(
@@ -48,8 +50,9 @@ export const ModalProvider = ({ children }: any) => {
       modalContent,
       setModalContent,
       keyModal, setKeyModal,
+      modalContentDetails, setModalContentDetails,
     }),
-    [data, modalContent, toggleModal, keyModal, setKeyModal],
+    [data, toggleModal, modalContent, keyModal, modalContentDetails],
   );
 
   return (
